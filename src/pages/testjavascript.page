@@ -1,0 +1,43 @@
+<apex:page >
+  <html>
+
+<head>
+       
+         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" ></script>
+           
+         <script type="text/javascript">
+                    $(function(){
+                    $(":checkbox").change(function(){
+                    $(this).closest("tr").toggleClass("highlight",this.checked)
+                    
+                   })
+})
+                </script>
+                    
+
+                                    
+          <style type="text/css">
+                 .highlight{
+                  background-color:red; !important;
+                  background: #yello !important;
+                  font-size:100px;
+                }
+          </style>
+       
+</head>
+    <body>
+        <table>
+    <tr>
+        <td ><input type="checkbox" /></td>
+        <td>Name</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" /></td>
+        <td>Name2</td>
+    </tr>
+</table>
+
+</body>
+
+</html>
+  </apex:page>

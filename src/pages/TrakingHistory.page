@@ -1,0 +1,3 @@
+<apex:page standardController="Bill__c">
+  <c:GenericHistoryComponent recordLimit="50" myObject="{!Bill__c}"></c:GenericHistoryComponent>
+</apex:page>

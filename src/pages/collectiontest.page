@@ -1,0 +1,16 @@
+<apex:page tabStyle="Student__c" showHeader="false" sidebar="false" controller="collectionfirst" >
+    <apex:pageBlock title="Book Information">
+        
+        <apex:pageBlockSection title="Book Title">
+                {! title } <br/>
+        </apex:pageBlockSection>
+        
+        <apex:pageBlockSection title="Book Price">
+                 {! price } <br/>
+        </apex:pageBlockSection>
+       
+        <apex:pageBlockSection title="Book Author">    
+                {! author } <br/>
+        </apex:pageBlockSection>   
+    </apex:pageBlock>
+</apex:page>

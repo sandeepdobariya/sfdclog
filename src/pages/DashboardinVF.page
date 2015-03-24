@@ -1,0 +1,6 @@
+<apex:page >
+
+     <apex:iframe src="/01Z90000000DuoZ?isdtp=nv" scrolling="true" height="500px" width="100%"/> 
+     
+   
+</apex:page>

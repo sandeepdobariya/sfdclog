@@ -1,0 +1,34 @@
+<apex:page >
+<HTML>
+<HEAD>
+<TITLE>Test</TITLE>
+<script>
+function SaveScrollXY() {
+document.Form1.ScrollX.value = document.body.scrollLeft;
+document.Form1.ScrollY.value = document.body.scrollTop;
+}
+function ResetScrollPosition() {
+var hidx, hidy;
+hidx = document.Form1.ScrollX;
+hidy = document.Form1.ScrollY;
+if (typeof hidx != ‘undefined’ && typeof hidy != ‘undefined’) {
+window.scrollTo(hidx.value, hidy.value);
+}
+}
+</script>
+</HEAD>
+<BODY onload="ResetScrollPosition();">
+<form name="Form1?" id="Form1?" method="post" onsubmit="SaveScrollXY()" >
+<input name="ScrollX" id="ScrollX" type="hidden" value="" />
+
+<p>This is just a paragraph to make a very long page.</p>
+…<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<P>This is just a paragraph to make a very long page.</P>
+<P>
+<input name="TextBox1?" type="text" value="" readonly="readonly" id="TextBox1?" /></P>
+<P>
+<input type="submit" name="Button1?" value="Post Form" id="Button1?" /></P>
+</form>
+</BODY>
+</HTML>
+</apex:page>

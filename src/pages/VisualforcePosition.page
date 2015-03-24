@@ -1,0 +1,16 @@
+<apex:page standardController="Positionn__c" id="Pid" tabStyle="Candidate__c">
+
+
+    <apex:form >
+            <apex:pageBlock title=" Position Info">
+                <apex:pageblockSection >
+                    <apex:inputField value="{!Positionn__c.Department__c}"/>
+                    <apex:inputField value="{!Positionn__c.Job_Description__c}"/>
+                    
+                        <apex:commandButton action="{!save}" value="Save"/>
+                        <apex:commandButton action="{! cancel}" value="Cancel"/>
+                    
+                </apex:pageblockSection>
+            </apex:pageBlock>
+    </apex:form>
+</apex:page>

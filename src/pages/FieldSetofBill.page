@@ -1,0 +1,11 @@
+<apex:page id="pageId" standardcontroller="Bill__c">
+<apex:form id="formId">
+    <apex:pageblock id="pbId">
+        <apex:pageblocksection columns="1" id="pbsIs" title="Billing Detail">
+            <apex:repeat value="{!$ObjectType.Bill__c.FieldSets.Bill_Field_set}" var="f">
+                <apex:inputfield value="{!Bill__c[f]}">
+            </apex:inputfield></apex:repeat>
+        </apex:pageblocksection>
+    </apex:pageblock>
+</apex:form>
+</apex:page>

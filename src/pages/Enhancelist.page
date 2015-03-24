@@ -1,0 +1,4 @@
+<apex:page >
+    <apex:enhancedList type="Bill__c" height="900" rowsPerPage="25" id="AccountList" customizable="true" />
+   
+</apex:page>

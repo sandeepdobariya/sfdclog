@@ -1,0 +1,12 @@
+<apex:page standardController="Account" extensions="ConditionalOverrideController" action="{!doOveride}" >
+ 
+    <apex:PageBlock >
+ 
+        <apex:outputPanel layout="block" style="padding-top:40px;padding-bottom:40px;">
+            <apex:outputLabel value="This is the custom Account landing page." />
+        </apex:outputPanel>
+        
+    </apex:PageBlock>
+    
+ 
+</apex:page>

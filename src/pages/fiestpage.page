@@ -1,0 +1,36 @@
+<apex:page >
+           <apex:pageBlock >
+           <h1> Wel come  </h1> {! $user.Firstname } 
+           </apex:pageBlock> 
+           
+            <apex:pageBlock >
+           <h1> New Position</h1>
+           </apex:pageBlock> 
+          <apex:form >
+         <apex:pageBlock tabstyle="position__c" >
+            
+             <apex:pageBlockSection > </apex:pageBlockSection>
+                 <apex:outputLabel >Job Description</apex:outputLabel>
+                 <apex:inputText /><br/>
+                 
+                 <apex:outputLabel >Responsibilites</apex:outputLabel>
+                 <apex:inputText /><br/>
+                 
+                 <apex:outputLabel >Skills Required</apex:outputLabel>
+                 <apex:inputText /><br/>
+                 
+                 <apex:outputLabel >Edu. Qualification</apex:outputLabel>
+                 <apex:inputText /><br/>
+                 <apex:pageBlockSection > </apex:pageBlockSection>        
+                 <apex:outputLabel >Min Salary  </apex:outputLabel>
+                 <apex:inputText /> 
+                  <apex:pageBlockSection > </apex:pageBlockSection>    
+                 <apex:outputLabel > Max Salary  </apex:outputLabel>   
+                 <apex:inputtext />      
+                 
+                 
+                   
+         </apex:pageBlock>
+         </apex:form>
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

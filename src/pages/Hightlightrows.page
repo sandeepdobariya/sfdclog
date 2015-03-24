@@ -1,0 +1,26 @@
+<apex:page >
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+function check(it) {
+var tr = it.parentNode.parentNode;
+  tr.style.backgroundColor = (it.checked) ? "yellow" : "white";
+}
+</script>
+<form>
+<table>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+<tr><td><input type="checkbox" onclick="check(this)"/></td><td>testing!</td><td>testing!</td><td>testing!</td><td>testing!</td></tr>
+</table>
+</form>
+</apex:page>

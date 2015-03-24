@@ -1,0 +1,70 @@
+<apex:page >
+
+<html>
+<head>
+
+<style type="text/css">
+<!--
+#apDiv1 {
+left:290px;
+top:19px;
+width:650px;
+z-index:1;
+}
+#name {
+position:absolute;
+left:296px;
+top:90px;
+width:267px;
+height:40px;
+z-index:1;
+}
+#email {
+position:absolute;
+left:296px;
+top:135px;
+width:267px;
+height:40px;
+z-index:2;
+}
+#phone {
+position:absolute;
+left:296px;
+top:180px;
+width:267px;
+height:40px;
+z-index:3;
+}
+#message {
+position:absolute;
+left:40px;
+top:272px;
+width:581px;
+z-index:4;
+text-align: center;
+}
+#button {
+position:absolute;
+left:166px;
+top:486px;
+width:317px;
+height:108px;
+z-index:5;
+text-align: center;
+}
+.fieldfontsize {
+font-size: 24px;
+}
+-->
+</style>
+</head>
+
+<body>
+<form>
+
+<div id="button"><img src="http://www.theoutsourcingcompany.com/tryarg/images/button.jpg" width="285" height="110" /></div>
+<div id="apDiv1"><img src="http://www.theoutsourcingcompany.com/tryarg/images/form.jpg" width="650" height="608" /></div>
+</form>
+</body>
+</html>
+</apex:page>

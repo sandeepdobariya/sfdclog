@@ -1,0 +1,90 @@
+<!--   
+Copyright (c) 2014, salesforce.com, Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright notice, 
+    this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright notice, 
+    this list of conditions and the following disclaimer in the documentation 
+    and/or other materials provided with the distribution.
+    * Neither the name of the salesforce.com, Inc. nor the names of its contributors 
+    may be used to endorse or promote products derived from this software 
+    without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+
+
+<apex:page standardController="twonetfitness__Health__c" extensions="twonetfitness.Register_2net_User_Controller" sidebar="false">
+ <apex:pageMessages />
+
+<apex:form >
+<table>
+  <tr>
+    <th>Action</th>
+    <th>Explanation</th>
+  </tr>
+  <tr>
+    <td><apex:commandButton disabled="{!isRegistered}" action="{!registerWith2Net}" value="Register With Qualcomm" id="RegisterButton" onclick="this.form.target='_blank'"/></td>
+    <td>Register your user with Qualcomm.  Has to be done once and before registered any devices.</td>
+  </tr>
+   <tr>
+    <td><apex:commandButton disabled="{!isHerokuRegistered}" action="{!RegisterWithHeroku}" value="Register With Heroku" id="RegisterWithHeroku"/></td>
+    <td>Register your user with Heroku. Allows your data to get into the correct org. </td>
+  </tr>
+   <tr>
+    <td><apex:commandButton disabled="{!IsreadyforDevices}" action="{!ListReigsteredDevices}" value="Update Devices" id="ListDevices"/></td>
+    <td>Updates all registered devices.  Must be clicked after each device is registered.</td>
+  </tr>
+    <tr>
+    <td><apex:commandButton disabled="{!IsreadyforDevices}" action="{!RegisterWithFitbit}" value="Register Fitbit" id="RegisterFitbitButton" onclick="this.form.target='_blank'"/></td>
+    <td>Register with Fitbit.</td>
+  </tr>
+  <tr>
+    <td><apex:commandButton disabled="{!IsreadyforDevices}" action="{!RegisterWithMapMyFitness}" value="Register MapMyFitness" id="RegisterMapMyFitnessButton" onclick="this.form.target='_blank'"/></td>
+    <td>Register with MapMyFitness.</td>
+  </tr>
+  <tr>
+    <td><apex:commandButton disabled="{!IsreadyforDevices}" action="{!RegisterWithRunKeeper}" value="Register RunKeeper" id="RegisterrunkeeperFitnessButton" onclick="this.form.target='_blank'"/></td>
+    <td>Register with RunKeeper.</td>
+  </tr>
+  <tr>
+    <td><apex:commandButton disabled="{!IsreadyforDevices}" action="{!RegisterWithWithings}" value="Register Withings" id="RegisterWithingsButton" onclick="this.form.target='_blank'"/></td>
+    <td>Register with Withings.</td>
+  </tr>
+  <tr>
+    <td><apex:commandButton disabled="{!IsreadyforDevices}" action="{!RegisterWithBodyMedia}" value="Register BodyMedia" id="RegisterBodyMediaButton" onclick="this.form.target='_blank'"/></td>
+    <td>Register with BodyMedia.</td>
+  </tr>
+  <tr>
+    <td><apex:commandButton disabled="{!IsreadyforDevices}" action="{!RegisterWithfatsecret}" value="Register Fatsecret" id="RegisterFatsecretButton" onclick="this.form.target='_blank'"/></td>
+    <td>Register with Fatsecret.</td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+
+     
+        
+  
+</apex:form>
+</apex:page>

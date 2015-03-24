@@ -1,0 +1,143 @@
+<apex:page controller="picklist_value" id="pg"
+    tabstyle="Account" >
+
+    <script src="/soap/ajax/10.0/connection.js" type="text/javascript"></script>
+    <script src="/soap/ajax/10.0/apex.js" type="text/javascript"></script>
+   <!-- * <c:Base_Comp_YUI_ModalLoader /> -->
+    <script type="text/javascript" src="{!URLFOR($Resource.jquery,'Jquery.js')}"></script>
+
+
+    <script>
+   
+       
+       function changePaymentType(){
+      //alert('tets');
+            changePaymentType2();
+       }
+       
+      
+        
+
+
+</script>
+
+    <apex:form id="frm">
+     <apex:actionFunction name="changePaymentType2" action="{!changePaymentType1}" rerender="Payment" status="status"/>  
+        <apex:sectionHeader title="Take Payment For {!accName}" />
+        
+        <apex:actionStatus onstart="startProcess();" onstop="endProcess();" id="status" /> 
+            
+          
+       <apex:pageBlock id="pb" rendered="{!showMainScreen}">
+        
+            <apex:outputPanel id="pageMsgs">
+                <apex:pageMessages ></apex:pageMessages>
+            </apex:outputPanel>
+            <apex:pageBlockButtons location="bottom">
+                
+            <div style="padding-left:200px">
+                  <apex:commandButton value="Continue" action="{!Save}"  onclick="startProcess();" oncomplete="endProcess();" reRender="frm" />
+            </div>
+                            
+               
+            </apex:pageBlockButtons>
+                 
+                 <apex:pageBlockSection columns="2">
+
+
+                         <apex:pageBlockSection columns="1" title="Payment Information" id="Payment">
+                             
+                              
+                                 <apex:selectList value="{!selectedPaymentType}" size="1" style="width:130px;"  id="selectedPaymentType" onchange="changePaymentType();" label="Payment Type" >  
+                                         <apex:selectOptions value="{!PaymentType}" /> 
+                                 </apex:selectList> 
+                                                                 
+                                 <apex:pageBlockSection columns="1" title="Payment Type Details">
+                                      
+                                          <apex:outputPanel >
+                                          
+                                                  <apex:pageBlockSection columns="2">
+                                              <!--    <apex:inputText value="{!Token}" label="Token" style="width:200px"/>
+                                                      <apex:outputtext ></apex:outputtext> -->
+                                                      <apex:inputText value="{!CheckWriterName}" id="CheckWriterName" label="{!CheckWirterLabel}" style="width:200px"/>
+                                                      <apex:outputText ></apex:outputText>
+                                                      <apex:inputText value="{!AccountNumber}" id="AccountNumber" label="{!AccountNumberLabel}" />  
+                                                      <apex:selectList value="{!CheckCCType}" size="1" style="width:130px;"  id="CheckCCType" label="{!CheckCCTypeLabel}" >  
+                                                             <apex:selectOptions value="{!CheckCCType1}" /> 
+                                                       </apex:selectList> 
+                                                  
+                                                  </apex:pageBlockSection>  
+                                          </apex:outputPanel>
+                                
+                                     <apex:outputPanel >
+                                     
+                                                 <apex:pageBlockSection rendered="{!ShowCC}" columns="2" > 
+                                                    
+                                                     <apex:selectList value="{!ExpMM}" size="1" style="width:130px;"  id="selMonId"  label="Exp Month" >   
+                                                         <apex:selectOptions value="{!EXPMonth}" /> 
+                                                     </apex:selectList> 
+                                                     <apex:selectList value="{!ExpYY}" size="1" style="width:130px;"  id="selYearId"  label="Exp Year" >   
+                                                         <apex:selectOptions value="{!EXPYear}" /> 
+                                                     </apex:selectList> 
+                                                     <apex:inputText value="{!CVV2}" id="CVV2" label="CVV2" />
+                                                     <apex:outputText ></apex:outputText>
+                                                     
+                                                  </apex:pageBlockSection> 
+                                         
+                                                 <apex:pageBlockSection rendered="{!ShowCG}" columns="2"> 
+                                                    <apex:inputText value="{!ABANumber}" id="ABANumber" label="Routing\Transit"/>
+                                                   <!-- <apex:image id="theImage" value="{!$Resource.RequiredSymbol}" width="5" height="20"/>  -->
+
+
+                                                    <apex:inputText value="{!CheckNo}" id="CheckNo" label="Check #"/>
+                                                   <!-- <apex:inputText value="{!CheckIDType}" id="CheckIDType" label="Check ID Type"/>-->
+                                                    <apex:selectList value="{!selectedCheckIDType}" size="1" style="width:130px;"  id="selCheckIDType"  label="Check ID Type" >   
+                                                         <apex:selectOptions value="{!CheckIDType2}" /> 
+                                                     </apex:selectList> 
+                                                     <apex:outputtext > </apex:outputtext>
+                                                    
+                                                   <apex:inputText value="{!License}" id="License" label="License"/>
+                                                    <apex:selectList value="{!selectedLicenseState}" size="1" style="width:130px;"  id="selectedLicenseState"  label="License State" >   
+                                                         <apex:selectOptions value="{!LicenseState1}" /> 
+                                                     </apex:selectList> 
+                                                  <!--  <apex:inputText value="{!LicenseState}" id="LicenseState" label="License State"/>  -->
+                                                   <!-- <apex:inputText value="{!SecondaryId}" id="SecondaryId" label="SecondaryId"/>  -->
+                                                 </apex:pageBlockSection> 
+                                         
+                                      </apex:outputPanel>
+                                  </apex:pageBlockSection>
+                             
+                              </apex:pageBlockSection>
+                              
+                           
+
+              </apex:pageBlockSection>
+     
+      </apex:pageBlock>
+       
+               <apex:pageBlock id="pgblock1" rendered="{!showOK}">
+              <apex:outputPanel id="pageMsgs1">
+                    <apex:pageMessages ></apex:pageMessages>
+               </apex:outputPanel>
+               
+                   <apex:pageBlockButtons location="bottom">
+                      <apex:commandButton value="Take Payment" action="{!execute}"  onclick="startProcess();" oncomplete="endProcess();" reRender="frm" />
+                      <apex:commandButton value="Go Back" action="{!goBack}"  onclick="startProcess();" oncomplete="endProcess();" reRender="frm" />
+                      <apex:commandButton value="Cancel" action="{!cancel}"  onclick="startProcess();" oncomplete="endProcess();" reRender="frm" />
+                   </apex:pageBlockButtons>
+               
+                 <apex:pageBlockSection title="Payment Summary" columns="1" id="transPbs1">
+                
+                    
+                
+              </apex:pageBlockSection>
+
+               
+             
+      </apex:pageBlock>  
+     
+      
+       
+
+   </apex:form>
+</apex:page>

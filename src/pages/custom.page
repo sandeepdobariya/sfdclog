@@ -1,0 +1,4 @@
+<apex:page >
+<c:BoxedTest borderWidth="4" text="Example 1"/>
+<c:BoxedTest borderWidth="4" text="Example 2"/>
+</apex:page>

@@ -1,0 +1,12 @@
+<apex:page controller="RerenderController">
+<h1>Rerender Example</h1>
+<apex:form >
+  <apex:outputPanel id="datePanel" rendered="{!showdate}">
+    <apex:outputText value="Date : {!todaysDate}"/>
+  </apex:outputPanel>
+  <div>
+     Show Date? <apex:inputCheckbox value="{!showDate}"/>
+  </div>
+  <apex:commandButton value="Submit" rerender="datePanel"/>
+</apex:form>
+</apex:page>

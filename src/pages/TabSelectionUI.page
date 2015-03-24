@@ -1,0 +1,73 @@
+<apex:page >
+  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+<head>
+
+<script src="{!URLFOR($Resource.Tab_Selector, '/Tab_Selector/prettify.js')}"></script>
+<script src="{!URLFOR($Resource.Tab_Selector, '/Tab_Selector/jquery.tabselect-0.2.js')}"></script>
+<script src="{!URLFOR($Resource.Tab_Selector, '/Tab_Selector/jquery-1.4.min.js')}"></script>
+<apex:stylesheet value="{!URLFOR($Resource.Tab_Selector, '/Tab_Selector/prettify.css')}"/>
+
+
+<script type="text/javascript">
+    
+var languages = ["de","fr","en","es","it"];
+
+var cars = ["Audi","Fiat","Ford","Peugeot","Ferrari"];
+
+$(document).ready(function(){
+    
+    prettyPrint(); // Google Code Prettify
+
+    $('#langtabs').tabSelect({
+        tabElements: languages,
+        selectedTabs: [ 'de', 'en' ]
+    });
+
+    $('#cartabs1').tabSelect({
+        tabElements: cars,
+        selectedTabs: [ ]
+    });
+
+    $('#cartabs2').tabSelect({
+        tabElements: cars,
+        selectedTabs: 'all'
+    });
+
+    $('#cartabs3').tabSelect({
+        tabElements: cars,
+        formElement: '#myinput'
+    });
+
+    $('#cartabs4').tabSelect({
+        tabElements: cars,
+        formElement: '#myselect'
+    });
+
+    $('#cartabs5').tabSelect({
+        tabElements: cars,
+        formElement: '#myhiddeninput',
+        onChange: function(selection){
+            console.log($('#myhiddeninput').val());
+        }
+    });
+
+    $('#cartabs6').tabSelect({
+        tabElements: cars,
+        selectedTabs: [ 'Fiat', 'Ford' ]
+    });
+
+});
+    
+</script>
+
+
+</head>
+<body>
+  <div class="demo">
+        <span id="langtabs"><span class="active">de</span><span class="active">fr</span><span class="active">en</span><span class="inactive">es</span><span class="inactive">it</span></span>
+    </div>
+
+</body>
+</html>
+</apex:page>

@@ -1,0 +1,52 @@
+<apex:page controller="VIPListController" showHeader="false" standardStylesheets="false" docType="html-5.0" sidebar="false">
+    <!-- include bootstrap css file 
+    <apex:stylesheet value="{!URLFOR($Resource.bootstrap, 'css/bootstrap.min.css')}" />
+    
+  
+    <apex:stylesheet value="{!URLFOR($Resource.bootstrap, 'fonts/glyphicons-halflings-regular.eot')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.bootstrap, 'fonts/glyphicons-halflings-regular.svg')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.bootstrap, 'fonts/glyphicons-halflings-regular.ttf')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.bootstrap, 'fonts/glyphicons-halflings-regular.woff')}" />
+     
+    <apex:includeScript value="{!URLFOR($Resource.jquery)}" />
+    <apex:includeScript value="{!URLFOR($Resource.bootstrap, 'js/bootstrap.min.js')}" /> -->
+    
+    <!-- using bootstrap's list group to render buttons -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="list-group">
+                <apex:repeat value="{!VIPList}" var="vip">
+                <a href="#" class="list-group-item" id="{!vip.Id}">
+                    <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+                    {!vip.Name}
+                </a>
+                </apex:repeat>
+            </div>
+        </div>
+    </div>
+    
+    <style type="text/css">
+        body {
+            overflow-x: hidden;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // attach the onclick event handler to each <a> tag to handle the navigation
+            $('a.list-group-item').each(function() {
+                $(this).click(handleClick);
+            });
+            
+            function handleClick() {
+                // get the id of the link clicked
+                var id = $(this).attr('id');
+                
+                if (sforce && sforce.one) {
+                    // we're in mobile app
+                    // tell sforce1 to navigate to the object
+                    sforce.one.navigateToSObject(id);
+                }
+            }
+        });
+    </script>
+</apex:page>

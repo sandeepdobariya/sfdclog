@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Protected</customSettingsVisibility>
+    <description>Information about the trial</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>TrialStartDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>start date for this trial</description>
+        <externalId>false</externalId>
+        <label>Trial start date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <label>Trial Data</label>
+</CustomObject>

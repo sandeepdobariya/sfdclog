@@ -1,0 +1,4 @@
+<!-- this page should be AjaxResponder.page, but did not rename it -->
+<apex:page controller="GBFree.AjaxDelegator"  action="{!processRequest}" contentType="application/json; charset=utf-8" showHeader="false" standardStylesheets="false" sidebar="false">
+{!JSONResponse}
+</apex:page>

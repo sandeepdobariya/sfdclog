@@ -1,0 +1,30 @@
+<apex:page standardController="Course__c" showHeader="false">
+ <apex:pageBlock tabStyle="Course__c"> 
+  
+  <apex:pageBlockSection Title="Information  : ">   
+      <apex:pageBlockSectionItem >
+          <apex:form >
+                   <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <apex:commandButton value="Save" action="{! Save}"/>
+                   &nbsp;&nbsp;&nbsp;<apex:commandButton value="Save & New" action="{! quicksave}" />
+                   &nbsp;&nbsp;&nbsp;<apex:commandButton value="Cancel" action="{! Cancel}"/>
+                 <br/><br/>  
+           &nbsp; <apex:outputLabel >Course Name :&nbsp;</apex:outputLabel> &nbsp;&nbsp;
+                 <apex:inputtext value="{! Course__c.Name}"/><br/><br/>
+                
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <apex:outputLabel > Fees :&nbsp;&nbsp;</apex:outputLabel>
+                  <apex:inputtext value="{! Course__c.Fees__c}" /><br/><br/>
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          
+                  <apex:outputLabel > Duration :&nbsp;&nbsp;&nbsp;</apex:outputLabel>
+                  <apex:inputField value="{! Course__c.duration__c}" /><br/><br/>
+                  
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <apex:commandButton value="Save" action="{! Save}"/>
+                   &nbsp;&nbsp;&nbsp;<apex:commandButton value="Save & New" action="{! quicksave}" />
+                   &nbsp;&nbsp;&nbsp;<apex:commandButton value="Cancel" action="{! Cancel}"/>
+            </apex:form>            
+     </apex:pageBlockSectionItem>
+   </apex:pageBlockSection>
+  </apex:pageBlock>
+</apex:page>

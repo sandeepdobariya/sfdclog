@@ -1,0 +1,112 @@
+<apex:page sidebar="false" showheader="false" controller="customerPortalCls">
+
+<apex:pageMessages />
+
+<apex:form >
+
+<apex:actionPoller interval="5" action="{!checkForNewUser}" rerender="userOutput" status="statusId"/>
+
+<apex:outputPanel id="userOutput" rendered="{!IF(clickedButton=true,true,false)}">
+
+<br/>
+
+<b>This section will populate with the newly created User information. </b> <br/>
+
+Please <a href='/{!newUser.id}'>click here</a> to see the new User record<br/> User Id: {!newUser.id}<br/>
+
+</apex:outputPanel> 
+</apex:form>
+
+ 
+
+<apex:form >
+
+<apex:pageBlock id="pageBlockId" title="Testing the Creation of a Customer Portal User">
+
+
+
+<apex:pageBlockButtons location="bottom">
+
+<apex:commandButton disabled="{!(!IF(isDisabled=true,false,true))}" onclick="return confirm('Are you sure you want to create this portal user in your org?')" action="{!createPortaluser}" value="Create Account, Contact, and User"/>
+
+<apex:commandButton disabled="{!(!IF(isDisabled=true,true,false))}" rerender="pageBlockId" action="{!reset}" value="Reset" />
+
+</apex:pageBlockButtons>
+
+ 
+
+<apex:pageBlockSection title="Enter in Account Details">
+
+    <apex:pageBlockSectionItem >
+
+    <apex:outputLabel for="aName" value="Account Name"/>
+
+  <!--   <apex:inputField value="{!a.Name}" id="aName"/> -->
+
+    </apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+
+ 
+
+<apex:pageBlockSection title="Enter in Contact Details" columns="1">
+
+    <apex:pageBlockSectionItem >
+
+    <apex:outputLabel for="cFirstName" value="First Name"/>
+
+    <apex:inputField value="{!c.FirstName}" id="cFirstName"/>
+
+    </apex:pageBlockSectionItem>
+
+    <apex:pageBlockSectionItem >
+
+    <apex:outputLabel value="LastName" for="cLastName"/>
+
+    <apex:inputField value="{!c.LastName}" id="cLastName"/>
+
+    </apex:pageBlockSectionItem>
+
+    <apex:pageBlockSectionItem >
+
+    <apex:outputLabel value="Email" for="cEmail" />
+
+    <apex:inputField value="{!c.Email}" id="cEmail"/>
+
+    </apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+
+ 
+
+<apex:pageBlockSection title="Enter in User Details" columns="1">
+
+    <apex:pageBlockSectionItem >
+
+    <apex:outputLabel for="profileList" value="Select the Customer Portal Profile to assign new User"/>
+
+        <apex:selectList value="{!selectedProfileId}" multiselect="false" size="1" id="profileList">
+
+                <apex:selectOptions value="{!customerPortalProfiles}"/>
+
+            </apex:selectList>
+
+    </apex:pageBlockSectionItem>
+
+     
+
+    <apex:pageBlockSectionItem >
+
+    <apex:outputLabel value="Username (must be in form of email address, @xxxxx.com)" for="uUsername"/>
+
+    <apex:inputField value="{!u.username}" id="uUsername"/>
+
+    </apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+
+</apex:pageBlock>
+
+</apex:form>
+
+</apex:page>

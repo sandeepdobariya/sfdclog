@@ -1,0 +1,32 @@
+<apex:page sidebar="false" showHeader="false" standardController="Student__c" recordSetVar="students" standardStylesheets="false">
+    <apex:stylesheet value="http://developer.force.com/workbooks/vfdemo.css"/>
+    
+    <apex:pageblock title="Student Detail...">
+     <apex:form >
+     
+             <apex:pageBlockSection title="Formated Table">
+                    <apex:dataTable value="{! students}" var="st"> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;     
+                     <apex:column value="{! st.name }"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <apex:column value="{! st.course__c }"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <apex:column value="{! st.email_id__c }"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                     </apex:dataTable>                
+             </apex:pageBlockSection>
+             
+             <apex:pageBlockSection title="List ">
+                    <apex:datalist value="{! students}" var="st" type="1"> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;     
+                     <apex:outputText value="{! st.name }"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <apex:outputtext value="{! st.course__c }"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <apex:outputtext value="{! st.email_id__c }"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                     </apex:datalist>                
+             </apex:pageBlockSection>
+             
+             <apex:pageBlockSection title="Row Table">
+                    <apex:pageblockTable value="{! students}" var="st"> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;     
+                     <apex:column value="{! st.name }"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <apex:column value="{! st.course__c }"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <apex:column value="{! st.email_id__c }"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                     </apex:pageblockTable>                
+             </apex:pageBlockSection>
+     </apex:form>    
+     </apex:pageblock> 
+</apex:page>

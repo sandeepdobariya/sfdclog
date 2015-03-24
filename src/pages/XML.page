@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<apex:page controller="TestController" contentType="application/xml">  
+
+         <apex:repeat value="{!exportValues}" var="actual">
+                
+        </apex:repeat>
+</apex:page>

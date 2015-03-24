@@ -1,0 +1,7 @@
+<apex:page sidebar="false" showHeader="false" controller="Demo_main" >
+    
+  <apex:image url="{! $Resource.course}" /> &nbsp;
+  <apex:form >
+  <apex:commandButton value="New_Course" action="{! main}"/>
+  </apex:form>
+</apex:page>

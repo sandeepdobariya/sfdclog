@@ -1,0 +1,202 @@
+<apex:page showHeader="false" sidebar="false" controller="CalanderDemo4Controller" cache="true" expires="600"  standardStylesheets="false" applyBodyTag="false"  applyHtmlTag="false">
+    <html>  
+        <head>
+            <meta charset="utf-8" />
+        
+            <!-- Set the viewport width to device width for mobile -->
+            <meta name="viewport" content="width=device-width"/>
+            <title>jQuery Event Calendar Demo Page</title>
+            <link rel="shortcut icon" href="images/favicon.ico" />
+        
+            <!-- Grid CSS File (only needed for demo page) -->
+            <apex:stylesheet value="{!URLFOR($Resource.FullCalender, 'css/paragridma.css')}" /> 
+        
+            <!-- Core CSS File. The CSS code needed to make eventCalendar works -->
+            <apex:stylesheet value="{!URLFOR($Resource.FullCalender, 'css/eventCalendar.css')}" />
+        
+            
+            <apex:stylesheet value="{!URLFOR($Resource.FullCalender, 'css/eventCalendar_theme_responsive.css')}" />
+            <apex:stylesheet value="{!URLFOR($Resource.FullCalender, 'css/eventCalendar_theme.css')}" />
+            <!--<apex:stylesheet value="{!URLFOR($Resource.ZakCalendar, 'css/eventCalendar_theme_res.min.css')}" /> -->
+        
+            <!--<script src="js/jquery.js" type="text/javascript"></script>-->
+            <apex:includeScript value="{!URLFOR($Resource.FullCalender, 'jquery.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.FullCalender, 'js/jQuery.eventCalendar.min.js')}"/>
+            <style>
+                .eventsCalendar-list-wrap{overflow-y:hidden;}
+                .zak_logo{margin:0 auto; width:95%;margin-top:2%; margin-bottom:2%;} 
+                .content_container{margin:0 auto; width:95%;}            
+                .eventsCalendar-list li time small {display: none;}                         
+                body{padding :20px 0px;}
+                .bt{padding: 9px;}
+                .search_button { display:block; }
+                .clear_button { display: none ;}
+                .search_box{ width: 100% ; float:left; margin-bottom:7px; height:32px;border: 1px solid #d1d1d1;border-radius:5px;}
+                .search_input_cls{ float:left; width:97%; }
+                .search_image_cls{ float:right;  }
+                .search_input_inner{width:92%; color:#838383; border: none; font-size:12px;background-color:#fff !important;padding-top:7px; font-family:Arial; padding-left:10px;}
+                
+            #cover{ 
+                position:fixed; 
+                top:0; left:0; 
+                background:rgba(0,0,0,0.6); 
+                z-index:5; width:100%; height:100%; 
+                display:none; } 
+                
+            #loginScreen { 
+                margin:2% auto;
+                position:fixed;
+                z-index:10; display:none;                
+                border:2px solid #236093; 
+                border-radius:5px;               
+           } 
+           
+           #loginScreen:target, #loginScreen:target + #cover{ display:block; opacity:2; } 
+           .cancel {color:grey; font-size:22px; text-decoration:none; font-weight:bold; padding-right:3px;}
+            #display_msg{text-align:center; font-size:12px ; color:#236093; padding-bottom:5%;font-family:Arial;}
+            
+            @media (min-width:319px) and (max-width:979px){
+                .search_input_cls{ width:87%; }
+            }
+            </style>
+        </head>
+        <!--New-->
+        <body id="responsiveDemo">    
+            <div class="container">    
+               <!-- <div class="zak_logo">
+                    <img src="{!URLFOR($Resource.FullCalender, '/img/ZakCalendar-logo.png')}" style="float:left;"/>
+                    <span><img style="float:right; outline:0" tabindex="1" id="search_image"  src="{!URLFOR($Resource.FullCalender, '/img/Refresh-btn.png')}" onclick="window.location.reload();"/></span>
+                </div> -->
+                
+                <div class="content_container">          
+                    <form>                            
+                        <div class="content_buttons" style="float:left; width:100%;">                             
+                            <div style="float:left;  width:49.5%;"><a class="bt" target="_self" href="#" onclick="javascript: sforce.one.createRecord('Event');" > New Event</a></div>
+                           <!-- <div style="float:left;  width:49.5%; margin-left:1%;"><a class="bt" href="#loginScreen" >Sync with Google</a></div> -->
+                        </div>
+
+                    </form>
+                    
+                   <!-- <div id="loginScreen" style="width:92%;clear:both;"> 
+                           <div style="width:100%;clear:both;text-align:right;background: #fff;border-top-left-radius:5px;border-top-right-radius:5px;">
+                               <a href="#" class="cancel">&times;</a> 
+                           </div>
+                           <div id="display_msg" style="width:100%;clear:both;background: #fff;border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+                               This feature will be available in upcoming <strong>paid</strong> app <strong>"ZakCalendar Pro"</strong>
+                               
+                           </div>
+                       </div>
+                        <div id="cover" ></div>                        
+                        <a href="#loginScreen">
+                        
+                            <div class="search_box">                            
+                                <div class="search_input_cls"><input class="search_input_inner" type="text" id="test_search"  placeholder="Search...." disabled="true"/></div>
+                                <div class="search_image_cls"><img tabindex="1" id="search_image"  src="{!URLFOR($Resource.FullCalender, '/img/Search-btn.png')}" /></div>
+                                
+                            </div>
+                       </a> -->
+                     
+                    <apex:outputPanel id="event_list">
+                        <div id="eventCalendarInline" style="clear:both;"></div>
+                        
+                         <script>
+                         
+                              $(document).ready(function() {
+                                allEvents = [];  
+                                var data =  <apex:outputText value="{!events}" escape="true" />;  
+                                                                          
+                                populate(data);                            
+                                var eventsInline = allEvents;
+                                                          
+                                $("#eventCalendarInline").eventCalendar({
+                                   jsonData: eventsInline
+                               });                          
+                            });   
+                         </script>
+                         
+                    </apex:outputPanel>
+                    
+                     <script>   
+                             var allEvents;
+                            
+                            function populate(recordList){
+                                    jQuery.each(recordList, function(key, value) {                           
+                                        var newEvent = new Object();
+                                        var toAdd ='';
+                                        
+                                        if(value.Description == undefined){
+                                            toAdd        = 'No Description';
+                                        }else {
+                                            toAdd     = value.Description;
+                                        }
+                                        
+                                        var evtId           = value.Id;
+                                        var subject      = value.Subject;
+                                        
+                                        var arrStart = (value.StartDateTime).split(/[-:T.+]/);
+                                        var startDate = new Date(arrStart[0], arrStart[1]-1, arrStart[2], arrStart[3], arrStart[4], arrStart[5], arrStart[6]);
+                                        var arrEnd = (value.EndDateTime).split(/[-:T.+]/);
+                                        var edDate        = new Date(arrEnd[0], arrEnd[1]-1, arrEnd[2], arrEnd[3], arrEnd[4], arrEnd[5], arrEnd[6]);
+                                        
+                                        if(startDate != null && edDate != null)
+                                        {
+                                            var datum        = Date.parse(startDate);                                                                      
+                                            var starthour    = ''+startDate.getHours();
+                                            var startminute  = ''+startDate.getMinutes();
+                                            if(starthour<10)      {starthour    = '0' + starthour;}
+                                            if(startminute  <10)  {startminute  = '0' + startminute;}
+                                            var startday     = startDate.getDate();
+                                            var endday       = edDate.getDate();
+                                            var endhour;
+                                            var endminute;
+                                            if(startday == endday){
+                                                endhour   = '' + edDate.getHours();
+                                                endminute = '' + edDate.getMinutes();
+                                                if(endhour   <10)  {endhour   = '0' + endhour;}
+                                                if(endminute <10)  {endminute = '0' + endminute;}
+                                            
+                                            }
+                                            
+                                            if(endday>startday){
+                                                endhour   = '23';
+                                                endminute = '59';
+                                            }
+                                            newEvent.title  = subject + ' ('+ starthour + ':' + startminute + ' - ' + endhour + ':' + endminute + ')';
+                                            newEvent.date   = datum ;    // its a date string
+                                            newEvent.url = 'javascript: sforce.one.navigateToSObject(\'' + evtId + '\')';
+                                            newEvent.description   = toAdd;
+                                           
+                                            allEvents.push(newEvent);
+                                            for(var i=startday+1;endday >= startday+1;startday++){
+                                                var newEvent  = new Object();
+                                                starthour     = '00';
+                                                startminute   = '00';
+                                                endhour       = '23';
+                                                endminute     = '59';
+                                                if(endday == startday+1 ){
+                                                    endhour   = '' + edDate.getHours();
+                                                    endminute = '' + edDate.getMinutes();
+                                                    if(endhour   <10)  {endhour   = '0' + endhour;}
+                                                    if(endminute <10)  {endminute = '0' + endminute;}
+                                                }
+                                                
+                                                newEvent.date  = startDate.setDate(startDate.getDate()+1);
+                                                newEvent.title = subject + ' ('+ starthour + ':' + startminute + ' - ' + endhour  + ':' + endminute  + ')';
+                                                newEvent.url = 'javascript: sforce.one.navigateToSObject(\'' + evtId + '\')';
+                                                newEvent.description   = toAdd;
+                                                allEvents.push(newEvent);
+                                            }                               
+                                        }                                  
+                                    });
+                                }
+                                 
+                            
+                        </script>
+                    
+                </div>
+            </div>          
+        </body>
+        
+       
+    </html>
+</apex:page>

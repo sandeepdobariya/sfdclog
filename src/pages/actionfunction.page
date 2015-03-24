@@ -1,0 +1,21 @@
+<apex:page controller="actionfunctioncontroller">
+
+   <apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockButtons >
+             <apex:commandButton value=" Save" action="{!next}" id="next"/>
+        </apex:pageBlockButtons>
+        <apex:pageblockSection >
+            
+            
+             <apex:selectList value="{!selectbill}" size="1" style="width:170px;"  id="selectbill"  >  
+           <apex:selectOptions value="{!Bill}" /> 
+            </apex:selectList> 
+           
+        </apex:pageblockSection>    
+        
+        
+    </apex:pageBlock>
+   </apex:form> 
+ 
+</apex:page>

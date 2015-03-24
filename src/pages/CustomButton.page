@@ -1,0 +1,29 @@
+<apex:page standardController="Student__c" extensions="CRFNewAddressSelect">
+<apex:form >
+
+<apex:sectionHeader Title="Address Details" />
+    <apex:pageBlock Title="Select the type of Address">
+    
+        <apex:pageBlockSection columns="1">
+            <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="Hiiii"/>
+                    
+                    <apex:selectList id="id_1" value="{!Student__c.Qualification__c}" size="1" >
+                    <apex:actionSupport event="onchange" reRender="Container"/>
+                    <apex:selectOptions value="{!items}"/>
+                     
+                    </apex:selectList>
+
+            </apex:PageBlockSectionItem>
+
+            <apex:PageBlockSectionItem >
+            <apex:outputPanel id="Container">
+            <apex:outputPanel id="ajaxrequest" rendered="{!Student__c.Qualification__c!=''}">
+                <apex:commandButton value="Continue"/>
+            </apex:outputPanel>
+            </apex:outputPanel>
+            </apex:PageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

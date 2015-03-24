@@ -1,0 +1,38 @@
+<apex:page controller="CalendarDemoController" tabStyle="Contact">
+ 
+
+
+<script src="//code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+<link href="{!URLFOR($Resource.fullcalendar,'fullcalendar-2.3.0/fullcalendar.css')}" rel="stylesheet" type="text/css"/>
+<link href="{!URLFOR($Resource.fullcalendar,'fullcalendar-2.3.0/fullcalendar.print.css')}" rel="stylesheet" type="text/css" media="print"/>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="{!URLFOR($Resource.fullcalendar, 'fullcalendar-2.3.0/fullcalendar.min.js')}" type="text/javascript" language="javascript"></script>
+
+
+<apex:sectionHeader title="Calendar Demo"/>
+ 
+<!-- Calendar is rendered here by the fullcalendar Javascript -->
+<apex:pageBlock >
+    <div id='calendar'/>
+</apex:pageBlock>
+ 
+<!-- Fullcalendar configuration plus event data supplied by controller -->
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'title',
+            center: 'month,agendaWeek,agendaDay',
+            right: 'prevYear prev,today,next nextYear'
+        },
+        defaultView: 'agendaWeek',
+        allDayDefault: false,
+        minTime: 8,
+        maxTime: 21,
+        events:
+{!events}
+    });
+});
+</script>
+</apex:page>

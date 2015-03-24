@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Protected</customSettingsVisibility>
+    <description>Record that holds object prefixes. These are used to identify object types when only the ID is available</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AvDocumentPfx__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Record Id prefix for an AvDocument record</description>
+        <externalId>false</externalId>
+        <label>AvDocumentPfx</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HlistItemPfx__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Prefix for HlistItem object</description>
+        <externalId>false</externalId>
+        <label>HlistItemPfx</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HlistPfx__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Prefix for Hlist object</description>
+        <externalId>false</externalId>
+        <label>HlistPfx</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IssuePfx__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Prefix for Issue Object</description>
+        <externalId>false</externalId>
+        <label>IssuePfx</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MapCellPfx__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Prefix for a map cell object</description>
+        <externalId>false</externalId>
+        <label>MapCellPfx</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MapPfx__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Prefix for Map object</description>
+        <externalId>false</externalId>
+        <label>MapPfx</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProjectPfx__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Prefix for a Project object</description>
+        <externalId>false</externalId>
+        <label>ProjectPfx</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>ObjectPrefix</label>
+</CustomObject>

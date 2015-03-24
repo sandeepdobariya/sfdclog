@@ -1,0 +1,14 @@
+<apex:page standardController="Account">
+ <apex:form >
+ <apex:pageblock >
+    <apex:pageBlockTable value="{!Account.Histories}" var="h">
+        <apex:column headerValue="Date" value="{!h.createddate}"/>
+        <apex:column headerValue="User" value="{!h.createdbyid}"/>
+        <apex:column headerValue="Field"><apex:outputText value="{!h.field}"/></apex:column>
+        <apex:column headerValue="From"><apex:outputText value="{!h.oldvalue}"/></apex:column>
+        <apex:column headerValue="To"><apex:outputText value="{!h.newvalue}"/></apex:column>
+    </apex:pageBlockTable>
+</apex:pageblock>
+ 
+ </apex:form>
+</apex:page>

@@ -1,0 +1,37 @@
+<apex:page controller="course_con" showHeader="false" sidebar="false" tabStyle="Course__c">
+     <apex:form >
+         <apex:pageblock title="Course Information">
+            
+                    <apex:outputlabel > Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</apex:outputlabel>
+                    <apex:inputtext value="{! name }"/><br/>
+                    
+                    <apex:outputlabel > Duration :&nbsp;</apex:outputlabel>
+                    <apex:inputtext value="{! duration }"/><br/>
+                    
+                    <apex:outputlabel > Fees :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</apex:outputlabel>
+                    <apex:inputtext value="{! fees }"/> <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    <apex:commandButton value="Save " action="{! save}"/>
+          <apex:pageBlockSection title="Page Block Table">          
+                    <apex:pageBlockTable value="{! list1}" var="cc">
+                        <apex:column value="{! cc.name}"/>
+                         <apex:column value="{! cc.duration__c}"/>
+                         <apex:column value="{! cc.fees__c}"/>
+
+                    </apex:pageBlockTable>
+           </apex:pageBlockSection>         
+           
+           <apex:pageBlockSection title="List">
+           
+                   <apex:dataList value="{! list1 }" var="li">
+                       <apex:outputText value="{! li.name}" />
+                       <apex:outputText value="{! li.duration__c}" />
+                       <apex:outputText value="{! li.fees__c}" />
+                   </apex:dataList>   
+           </apex:pageBlockSection>
+                    
+                    
+             
+         </apex:pageblock>
+     </apex:form>
+</apex:page>

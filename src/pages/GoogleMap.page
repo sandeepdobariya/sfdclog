@@ -1,0 +1,247 @@
+<apex:page showHeader="true" sidebar="false" controller="AccountSearchController">
+
+<style>
+  #legend {
+    background: white;
+    padding: 10px;
+  }
+</style>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjIY5HKM1dAlao6yUU8EzwPzdUh2ZNj0g&sensor=false"> </script>
+<script>
+var gAccount = [];
+var map = null;
+var rendererOptions = {
+  draggable: true
+};
+var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);;
+var directionsService = new google.maps.DirectionsService();
+var counter = 0;
+var delay = 500;
+window.onload = happycode;
+
+function happycode(){
+populateMap();
+}
+var waypts=[];
+var origin1 = '';
+var dest = '';
+function load() {
+    map = null;
+    mapDiv = document.getElementById("map");
+    var mapOptions = {
+        //  center: new google.maps.LatLng(-34.397, 150.644),
+        //  center: new google.maps.LatLng(-25.274398, 133.775136),
+         // center: new google.maps.LatLng(42.496403,-124.413128),
+         center: new google.maps.LatLng(21.1700,72.8300),
+          zoom: 4,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          mapMaker: true
+    };
+    map = new google.maps.Map(mapDiv,mapOptions);
+     directionsDisplay.setMap(map);
+  directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+
+  google.maps.event.addListener(directionsDisplay, 'directions_changed', function() {
+    computeTotalDistance(directionsDisplay.getDirections());
+  });
+  
+  for(var i=0;i<gAccount.length;i++){
+      calcRoute(gAccount[i]);
+  }
+  /*if(counter < gAccount.length){
+      calcRoute(gAccount[counter++]);
+  }*/
+  /*if(counter < gAccount.length){
+      showAddress(gAccount[counter++],finishSearch);
+  }*/
+  finishSearch();
+}
+
+
+
+function finishSearch() {
+   if(counter < gAccount.length){
+      showAddress(gAccount[counter++],finishSearch);
+  }
+}
+
+function finishSearch1() {
+   if(counter < gAccount.length){
+      showAddress(gAccount[counter++],finishSearch1);
+  }
+}
+
+function showAddress1(record,finishSearch1) {
+
+}
+function showAddress(record,finishSearch) {
+var html='';
+try{
+ if(record.Longs != '' && record.Lats != ''){
+        var points = new google.maps.Point(record.Lats,record.Longs);
+        var latLongs = new google.maps.LatLng(record.Lats,record.Longs);
+       
+        html ='<hr>' + counter +'.&nbsp;Accounr Name : '+ record.Name + '<br\>';
+        html += 'Zip Code:'+record.City
+       // html += record.City +'&nbsp;'+ record.State + '&nbsp;'+ record.Country + ',&nbsp;' + record.Zip + '<br/>';
+        //html +="<hr><b>URL:<b> <a href=https://ap1.salesforce.com/" + record.Id + " target=_blank >account details</a>";
+           
+        var infowindow = new google.maps.InfoWindow({
+            content: html
+        });
+        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        
+        if(record.Name == 'Clarke'){
+        var marker = new google.maps.Marker({
+            position: latLongs,
+            map: map,
+            title: record.Name,
+          
+           // icon: 'http://google-maps-icons.googlecode.com/files/sailboat-tourism.png'
+           icon:  "{!URLFOR($Resource.GoogleMarker, 'GoogleMark/1.png')}"
+
+            
+        });
+        }else{
+             var marker = new google.maps.Marker({
+            position: latLongs,
+            map: map,
+            title: record.Name,
+            icon:  "{!URLFOR($Resource.GoogleMarker, 'GoogleMark/4.png')}"
+            
+
+            
+        });
+        }
+        
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+        });
+       
+        //set the center for last flag
+        if((gAccount.length - 1) == counter)
+            map.setCenter(latLongs, 3);
+       
+  }
+ }catch(error){}   
+    setTimeout(finishSearch,delay);
+}
+
+function Group(id,name,lats,longs,displayNumber,city,state,country,zip) {
+    this.Id = id;
+    this.Name = name;
+    this.Lats = lats;
+    this.Longs = longs;
+    this.DisplayNumber = displayNumber;
+    this.City = city;
+    this.State = state;
+    this.Country = country;
+    this.Zip = zip;
+}
+
+function setFocusOnMap(Lats,Longs){
+    map.setCenter(new google.maps.LatLng(Lats,Longs), 3);
+}
+
+function calcRoute(record) {
+  //  alert(record);
+    if(record.Lats != null && record.Longs != null && record.Lats != '' && record.Longs != ''){
+     var first=new google.maps.LatLng(42.496403,-124.413128);
+      var second=new google.maps.LatLng(42.496401,-124.413126);
+     // var points = new google.maps.Point(record.Lats,record.Longs);
+    // alert(record.Lats);
+    // alert(record.Longs);
+        var latLongs = new google.maps.LatLng(record.Lats,record.Longs);
+     // var values1=[first,second];
+    //  alert(values1);
+      var values=[latLongs];
+       alert(values);
+    //  alert(values[0]);
+     // alert(values[1]);
+      
+      alert(values.length); 
+    for(var i=0;i<values.length;i++)
+    {
+     waypts.push({location:values[i],stopover:true}); 
+    }
+    if(origin1 == '')
+        origin1 = ""+record.City+","+ record.Zip;
+    dest =  ""+record.City+","+ record.Zip;
+    var request = {
+    //origin: 'Sydney, NSW',
+    //destination: 'Sydney, NSW',
+    //origin: "Navsari,396403",
+   // destination: "KOLKATA,700001",
+   origin: origin1,
+   destination: dest,
+    //waypoints:[{location: 'Bourke, NSW'}, {location: 'Broken Hill, NSW'}],
+    waypoints: waypts,
+    travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+  });
+  }
+}
+
+function computeTotalDistance(result) {
+  var total = 0;
+  var myroute = result.routes[0];
+  alert(result);
+  for (var i = 0; i < myroute.legs.length; i++) {
+    total += myroute.legs[i].distance.value;
+  }
+  total = total / 1000.0;
+  alert(total);
+  //document.getElementById('total').innerHTML = total + ' km';
+}
+
+</script>
+<apex:form >
+<apex:actionStatus id="status" startText="Loading...." />
+<apex:outputPanel id="outMap">
+     <script type="text/javascript">
+      function populateMap(){
+         gAccount=[];
+        <apex:repeat value="{!lstAcc}" var="act" id="TmpLoop" >
+           gAccount.push(new Group("{!act.acc.id}","{!act.acc.Name}","{!act.acc.Latitude__c}","{!act.acc.Longitude__c}",true,'{!act.acc.BillingCity}','{!act.acc.BillingState}','{!act.acc.BillingCountry}','{!act.acc.BillingPostalCode}'));  
+          <!-- gAccount.push(new Group("{!act.acc.id}","{!act.acc.Name}","","",true,'{!act.acc.BillingCity}','{!act.acc.BillingState}','{!act.acc.BillingCountry}','{!act.acc.BillingPostalCode}'));  -->
+        </apex:repeat>
+         load();
+       }
+      </script>
+  </apex:outputPanel>
+<apex:pageBlock >
+<apex:commandButton value="Save" action="{!getPDF}"/>
+<apex:pageBlockSection columns="1">
+<apex:pageBlockSectionItem >
+ <!-- <apex:outputLabel value="Name:"></apex:outputLabel>
+ <apex:outputPanel >
+    <apex:inputText value="{!selectedAccName}"/>
+ </apex:outputPanel>
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+ <apex:outputLabel value="Postal Code:"></apex:outputLabel>
+ <apex:outputPanel >
+<apex:inputText value="{!selectedZip}"/>
+<apex:commandButton value="Search" action="{!searchAcc}" status="status" reRender="secMap,outMap" oncomplete="populateMap();" />
+ </apex:outputPanel> -->
+</apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+<apex:pageBlockSection id="secMap" title="Search result" columns="1">
+    <apex:outputPanel >
+      <table width="100%">
+        <tr>
+            <td width="100%">
+               <div id="map" style="height: 300px;"></div>
+           </td>
+        </tr>
+      </table>
+   </apex:outputPanel>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

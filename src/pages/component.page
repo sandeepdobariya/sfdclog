@@ -1,0 +1,7 @@
+<apex:page >
+<apex:form >
+
+    <c:myComponent myValue="" borderColor="green"  />
+    
+</apex:form>
+</apex:page>

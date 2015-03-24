@@ -1,0 +1,32 @@
+<apex:page >
+
+
+<html>
+
+<body>
+  
+<apex:form >
+    <div>
+      <apex:outputText ></apex:outputText>
+           <apex:inputCheckbox id="orange" />  
+          
+          <!--  <apex:inputCheckbox id="orange" value="orange"  />   -->
+          
+            <apex:outputLabel for="orange" >PO Number <apex:inputText style="width: 200px;"  /></apex:outputLabel>
+            
+            
+     </div>       
+ 
+  
+</apex:form>
+
+<script>
+$("input").click(function() {
+  $("#log").html( $(":checked").val() + " is checked!" );
+});
+</script>
+
+</body>
+</html>
+
+</apex:page>
